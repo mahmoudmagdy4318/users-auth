@@ -7,4 +7,5 @@ const getEnv = (envName, required = true) => {
 module.exports = {
   port: getEnv('PORT', false) || 3000,
   corsDomains: getEnv('CORS_DOMAINS', false),
+  mongoUri: getEnv('MONGO_URI', true),
 };
