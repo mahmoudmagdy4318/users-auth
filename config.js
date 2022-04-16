@@ -9,4 +9,6 @@ module.exports = {
   corsDomains: getEnv('CORS_DOMAINS', false),
   mongoUri: getEnv('MONGO_URI', true),
   saltRounds: getEnv('SALT_ROUNDS', false) || 10,
+  jwtSecret: getEnv('JWT_SECRET', true),
+  tokenExpiry: getEnv('TOKEN_EXPIRY', false) || 3600,
 };

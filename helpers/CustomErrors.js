@@ -25,4 +25,10 @@ module.exports.unauthorizedErr = new CustomError(
   'You Don\'t Have This Permission',
 );
 
-module.exports.VALIDATION_ERR = (errorDetails) => new CustomError(422, 'VALIDATION_ERROR', 'Invalid Data', errorDetails);
+module.exports.loginErr = new CustomError(
+  401,
+  'UNAUTHORIZED',
+  'Invalid Username Or Password',
+);
+
+module.exports.validationErr = (errorDetails) => new CustomError(422, 'validationErrOR', 'Invalid Data', errorDetails);

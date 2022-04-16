@@ -1,9 +1,11 @@
 const express = require('express');
-const { addUser } = require('../controllers/users');
-const { validateUserData } = require('../middlewares');
+const { userController } = require('../controllers');
+const { validateUserData, validateLoginData } = require('../middlewares');
 
 const usersRouter = express.Router();
 
-usersRouter.post('/', validateUserData, addUser);
+usersRouter.post('/', validateUserData, userController.addUser);
+
+usersRouter.post('/login', validateLoginData, userController.login);
 
 module.exports = usersRouter;
