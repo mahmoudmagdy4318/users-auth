@@ -1,0 +1,1 @@
+exports.validateUserData = require('./usersValidation');
