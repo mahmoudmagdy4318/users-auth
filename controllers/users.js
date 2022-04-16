@@ -1,3 +1,4 @@
+const { hashPassword } = require('../helpers/passwords');
 const { UserModel } = require('../models');
 
 const addUser = async (req, res) => {
@@ -5,8 +6,10 @@ const addUser = async (req, res) => {
     username, password, email,
   } = req.body;
 
+  const hashedPassword = await hashPassword(password);
+
   const user = await UserModel.create({
-    username, password, email,
+    username, password: hashedPassword, email,
   });
 
   res.status(201).json(user);
