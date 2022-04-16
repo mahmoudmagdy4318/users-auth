@@ -10,7 +10,7 @@ module.exports = CustomError;
 module.exports.authErr = new CustomError(
   403,
   'FORBIDDEN',
-  'You Are Not Allowed To Perform This Action',
+  'You Don\'t Have This Permission',
 );
 
 module.exports.serverErr = new CustomError(
@@ -22,7 +22,7 @@ module.exports.serverErr = new CustomError(
 module.exports.unauthorizedErr = new CustomError(
   401,
   'UNAUTHORIZED',
-  'You Don\'t Have This Permission',
+  'You Are Not Allowed To Perform This Action',
 );
 
 module.exports.loginErr = new CustomError(

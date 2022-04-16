@@ -28,7 +28,13 @@ const login = async (req, res) => {
   res.json({ accessToken });
 };
 
+const getAll = async (req, res) => {
+  const users = await UserModel.find();
+  res.json(users);
+};
+
 module.exports = {
   addUser,
   login,
+  getAll,
 };
