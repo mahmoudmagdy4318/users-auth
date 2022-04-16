@@ -13,8 +13,8 @@ const schema = new mongoose.Schema({
 });
 
 schema.post('save', (error, doc, next) => {
-  if (error.name === 'MongoError' && error.code === 11000) {
-    next(VALIDATION_ERR('email must be unique'));
+  if (error.code === 11000) {
+    next(VALIDATION_ERR('User With This Email Already Exists'));
   } else {
     next(error);
   }
