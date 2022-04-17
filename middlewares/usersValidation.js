@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { validationErr } = require('../helpers/CustomErrors');
+const { validationErr } = require('../helpers/errors/CustomErrors');
 
 const schema = Joi.object({
   username: Joi.string()

@@ -7,8 +7,7 @@ require('./dbConnection');
 
 const { port, corsDomains } = require('./config');
 const { usersRouter } = require('./routes');
-const { errorHandler } = require('./helpers');
-const { customError } = require('./helpers/errorHandler');
+const errorHandler = require('./helpers/errors/errorHandler');
 
 const app = express();
 
@@ -18,7 +17,6 @@ app.use(cors({
 }));
 
 app.use(['/users', '/user'], usersRouter);
-console.log(customError);
 app.use(errorHandler);
 
 app.listen(port, () => {

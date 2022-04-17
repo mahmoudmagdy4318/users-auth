@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const { saltRounds } = require('../config');
-const { loginErr } = require('./CustomErrors');
+const { saltRounds } = require('../../config');
+const { loginErr } = require('../errors/CustomErrors');
 
 exports.hashPassword = async (password) => {
   const hashedPassword = await bcrypt.hash(password, saltRounds);

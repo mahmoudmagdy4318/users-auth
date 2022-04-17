@@ -1,9 +1,10 @@
-const { loginErr } = require('../helpers/CustomErrors');
-const { hashPassword, comparePassword } = require('../helpers/passwords');
-const { signToken } = require('../helpers/tokens');
+const { loginErr } = require('../helpers/errors/CustomErrors');
+const { hashPassword, comparePassword } = require('../helpers/auth/passwords');
+const { signToken, verifyToken } = require('../helpers/auth/tokens');
 const { UserModel } = require('../models');
+const { sendVerificationEmail } = require('../helpers/emails/sendingEmails');
 
-const addUser = async (req, res) => {
+const addUser = async (req, res, next) => {
   const {
     username, password, email,
   } = req.body;
@@ -14,7 +15,17 @@ const addUser = async (req, res) => {
     username, password: hashedPassword, email,
   });
 
-  res.status(201).json(user);
+  const accessToken = await signToken({
+    id: user.id,
+  });
+
+  try {
+    await sendVerificationEmail(accessToken)(user.email);
+    res.status(201).json(user);
+  } catch (error) {
+    await UserModel.deleteOne({ email });
+    next(error);
+  }
 };
 
 const login = async (req, res) => {
@@ -33,8 +44,18 @@ const getAll = async (req, res) => {
   res.json(users);
 };
 
+const verifyEmail = async (req, res) => {
+  const { token } = req.query;
+  const { id: userId } = await verifyToken(token);
+  await UserModel.findByIdAndUpdate(userId, {
+    $set: { emailVerified: true },
+  });
+  res.json({ success: true });
+};
+
 module.exports = {
   addUser,
   login,
   getAll,
+  verifyEmail,
 };

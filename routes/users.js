@@ -10,4 +10,6 @@ usersRouter.post('/login', validateLoginData, userController.login);
 
 usersRouter.get('/', authorizeUser, userController.getAll);
 
+usersRouter.get('/verify', userController.verifyEmail);
+
 module.exports = usersRouter;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const omit = require('lodash/omit');
-const { validationErr } = require('../helpers/CustomErrors');
+const { validationErr } = require('../helpers/errors/CustomErrors');
 
 const schema = new mongoose.Schema({
   username: {
@@ -11,6 +11,7 @@ const schema = new mongoose.Schema({
     index: { unique: true },
   },
   password: { type: 'String' },
+  emailVerified: { type: 'Boolean', default: false },
 }, {
   toJSON: {
     transform: (_, userData) => omit(userData, ['__v', 'password']),
