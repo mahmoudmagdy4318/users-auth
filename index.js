@@ -8,6 +8,7 @@ require('./dbConnection');
 const { port, corsDomains } = require('./config');
 const { usersRouter } = require('./routes');
 const errorHandler = require('./helpers/errors/errorHandler');
+const logger = require('./helpers/logs/logger');
 
 const app = express();
 
@@ -20,5 +21,5 @@ app.use(['/users', '/user'], usersRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`auth service listening on port ${port}`);
+  logger.info(`auth service listening on port ${port}`);
 });

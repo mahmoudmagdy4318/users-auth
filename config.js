@@ -26,4 +26,8 @@ module.exports = {
   },
   emailFrom: getEnv('EMAIL_FROM', true),
   verificationLink: getEnv('VERIFICATION_LINK', true),
+  log: {
+    level: getEnv('LOG_LEVEL', false) || 'info',
+    silent: getEnv('LOG_SILENT', false) || false,
+  },
 };
