@@ -45,7 +45,7 @@ const getAll = async (req, res) => {
 };
 
 const verifyEmail = async (req, res) => {
-  const { token } = req.query;
+  const { token } = req.body;
   const { id: userId } = await verifyToken(token);
   await UserModel.findByIdAndUpdate(userId, {
     $set: { emailVerified: true },
