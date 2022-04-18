@@ -115,4 +115,14 @@ The schema of the user is as follows
 ##### inside config.js you can find our configurable variables through env variables
 
 
-
+### How To Run
+- 1- run ```npm install```
+- 2- create .env file like the existing .env.example, make sure of adding the following required envs.
+-  MONGO_URI
+-  JWT_SECRET
+-  MAIL_HOST
+-  MAIL_SERVER_USER
+-  MAIL_SERVER_PASSWORD
+-  EMAIL_FROM
+-  VERIFICATION_LINK
+- 3- run ```npm start```
